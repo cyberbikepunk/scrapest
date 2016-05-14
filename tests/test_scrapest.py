@@ -1,9 +1,9 @@
 """ The test module (pytest + tox). """
 
+from __future__ import print_function
 from mock import patch
 from pytest import mark
-
-from scrapest.scrapest import scrub_keys, dispatch_command
+from scrapest.scrapest import scrub_keys, dispatch_command, __doc__ as docstring
 
 
 def test_scrub_keys():
@@ -30,3 +30,4 @@ def test_dispatch_command(params, function_name, args, kwargs):
     with patch(function_path, return_value=None) as function:
         dispatch_command(**params)
         function.assert_called_once_with(*args, **kwargs)
+

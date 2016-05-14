@@ -16,10 +16,10 @@ basicConfig(format='[%(module)s] %(message)s', level=DEBUG)
 log = getLogger(__name__)
 
 
-def scrub_keys(raw_args):
+def scrub_keys(raw_kwargs):
     return {
         key.lower().lstrip('--').lstrip('<').rstrip('>'): value
-        for key, value in kwargs.items()
+        for key, value in raw_kwargs.items()
         }
 
 
@@ -47,5 +47,5 @@ def dispatch_command(init=False, add=False, remove=False, url=None):
 
 
 if __name__ == '__main__':
-    args = scrub_keys(docopt(__doc__))
-    log.debug('Command line arguments = %s', args)
+    kwargs = scrub_keys(docopt(__doc__))
+    log.debug('Command line arguments = %s', kwargs)
