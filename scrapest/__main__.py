@@ -11,10 +11,11 @@ Usage:
 from __future__ import print_function
 from docopt import docopt
 from logging import basicConfig, getLogger, DEBUG
+from scrapest.scaffolding import build_scaffolding
 
 
 basicConfig(format='[%(module)s] %(message)s', level=DEBUG)
-log = getLogger(__name__)
+log = getLogger('scrapest.main')
 
 
 def scrub_keys(raw_kwargs):
@@ -22,10 +23,6 @@ def scrub_keys(raw_kwargs):
         key.lower().lstrip('--').lstrip('<').rstrip('>'): value
         for key, value in raw_kwargs.items()
         }
-
-
-def build_scaffolding():
-    log.debug('Building test scaffolding')
 
 
 def cache_webpage(url):
