@@ -8,7 +8,7 @@ Usage:
 
 """
 
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 from docopt import docopt
 from logging import basicConfig, getLogger, DEBUG
 from scrapest.scaffolding import build_scaffolding
