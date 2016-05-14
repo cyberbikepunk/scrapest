@@ -10,8 +10,9 @@ from sys import exit
 log = getLogger('scrapest.scaffolding')
 
 test_dir = 'tests'
-cache_dir = 'scrapest_cache'
-cache_path = join(test_dir, cache_dir)
+config_dir = 'scrapest'
+cache_dir = 'cache'
+cache_path = join(test_dir, config_dir, cache_dir)
 
 
 class ScaffoldingError(Exception):
@@ -42,7 +43,7 @@ def build_scaffolding():
         raise ScaffoldingError('scrapest must be run from the root of the Scrapy project')
 
     if isdir(cache_path):
-        log.info('Test scaffold already exists: exiting')
+        log.info('Test scaffold already exists')
         exit(0)
 
     if isdir(test_dir):
@@ -52,4 +53,4 @@ def build_scaffolding():
         makedirs(cache_path)
         log.debug('Created the cache %s', cache_path)
     except IOError:
-        raise ScaffoldingError('I/O problem creating %s', cache_path)
+        raise ScaffoldingError('Cannot create %s', cache_path)
