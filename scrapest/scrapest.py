@@ -16,11 +16,13 @@ basicConfig(format='[%(module)s] %(message)s', level=DEBUG)
 log = getLogger(__name__)
 
 
-def parse_args(args):
-    return {k.lower(): v for k, v in args.items()}
+def scrub_keys(raw_args):
+    return {
+        key.lower().lstrip('--').lstrip('<').rstrip('>'): value
+        for key, value in raw_args.items()
+    }
 
 
 if __name__ == '__main__':
-    cli_args = parse_args(docopt(__doc__))
-    log.debug('%s', dict(cli_args))
-
+    args = scrub_keys(docopt(__doc__))
+    log.debug('Command line arguments = %s', args)
