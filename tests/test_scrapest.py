@@ -1,6 +1,6 @@
 """ The test module (pytest + tox). """
 
-from __future__ import print_function
+from io import StringIO
 from mock import patch
 from pytest import mark
 from scrapest.scrapest import scrub_keys, dispatch_command, __doc__ as docstring
@@ -31,3 +31,15 @@ def test_dispatch_command(params, function_name, args, kwargs):
         dispatch_command(**params)
         function.assert_called_once_with(*args, **kwargs)
 
+
+@patch('sys.stdout', new_callable=StringIO)
+def test_print_doctstrings(mock_stdout):
+    params = {
+        'init': False,
+        'add': False,
+        'remove': False,
+        'url': None
+    }
+    dispatch_command(**params)
+    # The print function adds a new line at the end
+    assert mock_stdout.getvalue() == docstring + '\n'

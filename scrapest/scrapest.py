@@ -1,6 +1,7 @@
-""" Scrapest is a testing framework for Scrapy.
+"""Scrapest is a testing framework for Scrapy.
 
 Usage:
+    scrapest
     scrapest init
     scrapest add URL
     scrapest remove URL
@@ -49,3 +50,4 @@ def dispatch_command(init=False, add=False, remove=False, url=None):
 if __name__ == '__main__':
     kwargs = scrub_keys(docopt(__doc__))
     log.debug('Command line arguments = %s', kwargs)
+    dispatch_command(**kwargs)
