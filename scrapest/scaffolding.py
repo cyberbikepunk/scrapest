@@ -54,3 +54,14 @@ def build_scaffolding():
         log.debug('Created the cache %s', cache_path)
     except IOError:
         raise ScaffoldingError('Cannot create %s', cache_path)
+
+
+class Scaffold(object):
+    def __init__(self):
+        self.root_dir = getcwd()
+        self.test_dir = join(self.root_dir, test_dir)
+        self.config_dir = join(self.test_dir, config_dir)
+        self.cache_dir = join(self.config_dir, cache_dir)
+
+
+scaffold = Scaffold()
