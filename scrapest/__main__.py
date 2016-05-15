@@ -9,10 +9,13 @@ Usage:
 """
 
 from __future__ import print_function, unicode_literals
-from docopt import docopt
-from logging import basicConfig, getLogger, DEBUG
-from scrapest.scaffolding import build_scaffolding
 
+from logging import basicConfig, getLogger, DEBUG
+
+from docopt import docopt
+
+from scrapest.scaffolding import build_scaffolding
+from scrapest.webpages import WebPage
 
 basicConfig(format='[%(module)s] %(message)s', level=DEBUG)
 log = getLogger('scrapest.main')
@@ -27,6 +30,8 @@ def scrub_keys(raw_kwargs):
 
 def cache_webpage(url):
     log.debug('Caching %s', url)
+    page = WebPage(url)
+    page.add()
 
 
 def uncache_webpage(url):
