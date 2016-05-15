@@ -65,6 +65,8 @@ class WebPage(object):
 
     @property
     def filepath(self):
+        if not scaffold.is_created:
+            raise WebpageError('Run init sub-command first')
         return join(scaffold.cache_dir, slugify(self.title) + '.html')
 
     @property
