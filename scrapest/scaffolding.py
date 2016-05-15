@@ -63,5 +63,9 @@ class Scaffold(object):
         self.config_dir = join(self.test_dir, config_dir)
         self.cache_dir = join(self.config_dir, cache_dir)
 
+    @property
+    def is_created(self):
+        return isdir(self.cache_dir)
+
 
 scaffold = Scaffold()
