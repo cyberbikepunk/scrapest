@@ -20,7 +20,7 @@ class WebpageError(Exception):
 
 
 class WebPage(object):
-    def __init__(self, url, *parsers, encoding='utf-8'):
+    def __init__(self, url, encoding='utf-8', *parsers):
         self.url = url
         self.parsers = parsers
         self.encoding = encoding
