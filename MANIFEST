@@ -3,3 +3,4 @@ setup.py
 scrapest/__init__.py
 scrapest/__main__.py
 scrapest/scaffolding.py
+scrapest/webpages.py
